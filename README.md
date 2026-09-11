@@ -103,9 +103,13 @@ python3 scripts/calculate_prod.py [input_file] [-f FLUX_VARIANT] [--no-ms]
 The input parameter file is a space-separated ASCII file (lines starting with `#` are treated as comments). Each row defines a target sample/irradiation setup with 12 mandatory columns:
 
 ```text
-# Area   fthick  sample   mass[g]  diam[mm] thick[mm] material iso2act isoprod   tirr[s]   nprotons  bif
-NEAR     0.0     SAMP_A   1.5000   13.0     2.0000    SiO2     O16     004010    3600.0    2.5e18    1.00
-NEAR     0.0     SAMP_B   2.0000   13.0     2.5000    SiO2     Si28    013026    3600.0    2.5e18    0.95
+#  1           2        3        4        5         6         7       8        9        10         11     12
+#area fthick[mm]   sample  mass[g] diam[mm] thick[mm]  material iso2act  isoprod   tirr[s]   nprotons     BIF
+NEAR         0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     1.0   
+NEAR         0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
+NEAR         0.0  quartz1      2.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     1.0   
+NEAR         0.0  quartz2      2.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
+
 ```
 
 ### Column Definitions

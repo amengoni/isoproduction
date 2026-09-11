@@ -2,6 +2,8 @@
 #area fthick[mm]   sample  mass[g] diam[mm] thick[mm]  material iso2act  isoprod   tirr[s]   nprotons     BIF
 NEAR         0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     1.0   
 NEAR         0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
+NEAR         0.0  quartz1      2.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     1.0   
+NEAR         0.0  quartz2      2.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
 EAR1FC       0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     0.45  
 EAR1FC       0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     0.45  
 EAR2         0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     0.30  
