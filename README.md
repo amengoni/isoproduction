@@ -109,6 +109,10 @@ NEAR         0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26
 NEAR         0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
 NEAR         0.0  quartz1      2.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     1.0   
 NEAR         0.0  quartz2      2.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     1.0   
+EAR1FC       0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     0.45  
+EAR1FC       0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     0.45  
+EAR2         0.0  quartz1      1.5     13.0      4.26      SiO2    Si28     Al26    491770  7.980e+17     0.30  
+EAR2         0.0  quartz2      1.5     13.0      4.26      SiO2     O16     Be10    491770  7.980e+17     0.30  
 
 ```
 
@@ -136,18 +140,22 @@ NEAR         0.0  quartz2      2.5     13.0      4.26      SiO2     O16     Be10
 Output is printed directly to `STDOUT` and automatically written to `prod_summary.out` in the working directory:
 
 ```text
-# Input Table           : inputs/input_NEAR_BurialDating_prod
-# Resolved Spectrum(s)  : NEAR-MCecc
+# Input Table           : inputs/input_BurialDating_prod
+# Resolved Spectrum(s)  : NEAR-MCecc, Z21-EAR1FC, Z22-EAR2
 # SACS Driver           : scripts/calculate_sacs3.py via Subprocess Execution
 # Corrections Applied   : Self-attenuation (f_att) & Multiple Scattering (Fms)
 # Flux Variant Option   : MCecc
 #1        2          3       4        5          6         7          8            9            10           11           12               13              14      
-#area     sample     target  product  fthick[mm] mass[g]   thick[mm]  SACS[b]      f-SACS[b]    ssf-SACS[b]  ms-SACS[b]   n_total[n/cm2]   N_produced      BIF     
-#################################################################################################################################################################
-NEAR     SAMP_A     O16     Be10     0.00       1.5000    2.0000     1.240e-04    1.240e-04    1.215e-04    1.285e-04    8.928e+14        1.854e+09       1.00    
-NEAR     SAMP_B     Si28    Al26     0.00       2.0000    2.5000     3.120e-04    3.120e-04    3.050e-04    3.210e-04    8.482e+14        5.412e+09       0.95    
-
-# Summary table saved to 'prod_summary.out'.
+#area    sample     target  product  fthick[mm] mass[g]   thick[mm]  SACS[b]      f-SACS[b]    ssf-SACS[b]  ms-SACS[b]   n_total[n/cm2]   N_produced      BIF     
+##################################################################################################################################################################
+NEAR     quartz1    Si28    Al26     0.00       1.5000    4.2600     1.109e-03    1.109e-03    1.085e-03    1.122e-03    9.467e+13        1.597e+09       1.00    
+NEAR     quartz2    O16     Be10     0.00       1.5000    4.2600     2.927e-05    2.927e-05    2.874e-05    2.887e-05    9.467e+13        8.218e+07       1.00    
+NEAR     quartz1    Si28    Al26     0.00       2.5000    4.2600     1.109e-03    1.109e-03    1.069e-03    1.069e-03    9.467e+13        2.536e+09       1.00    
+NEAR     quartz2    O16     Be10     0.00       2.5000    4.2600     2.927e-05    2.927e-05    2.840e-05    2.840e-05    9.467e+13        1.347e+08       1.00    
+EAR1FC   quartz1    Si28    Al26     0.00       1.5000    4.2600     2.085e-03    2.085e-03    2.040e-03    2.108e-03    5.681e+11        1.801e+07       0.45    
+EAR1FC   quartz2    O16     Be10     0.00       1.5000    4.2600     6.132e-05    6.132e-05    6.025e-05    6.052e-05    5.681e+11        1.034e+06       0.45    
+EAR2     quartz1    Si28    Al26     0.00       1.5000    4.2600     1.544e-03    1.544e-03    1.510e-03    1.560e-03    8.518e+11        1.998e+07       0.30    
+EAR2     quartz2    O16     Be10     0.00       1.5000    4.2600     4.218e-05    4.218e-05    4.143e-05    4.163e-05    8.518e+11        1.066e+06       0.30    
 ```
 
 ---
