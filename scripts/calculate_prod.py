@@ -256,12 +256,14 @@ def calculate_production_for_entry(entry, flux_variant="MCecc", no_ms=False):
         fms_file=fms_path
     )
 
-    # 5. Fluence Normalization
+    # 5. Fluence Normalization & Incident Neutrons
     equivalent_pulses = nprotons / PROTONS_PER_STANDARD_PULSE
     if "Z21" in spectrum_file or "EAR1" in spectrum_file or "Z22" in spectrum_file or "EAR2" in spectrum_file:
         total_fluence = (sacs_res["nn"] / sample_area_cm2) * equivalent_pulses * bif
+        total_neutrons = sacs_res["nn"] * equivalent_pulses * bif
     else:
         total_fluence = sacs_res["nn"] * equivalent_pulses * bif
+        total_neutrons = sacs_res["nn"] * sample_area_cm2 * equivalent_pulses * bif
 
     # Production calculated with final fully-corrected ms-SACS cross section
     total_atoms = n_target_nuclei * (sacs_res["ms-SACS"] * 1e-24) * total_fluence
@@ -274,6 +276,7 @@ def calculate_production_for_entry(entry, flux_variant="MCecc", no_ms=False):
         "fthick_mm": fthick_mm,
         "mass_g": mass_g,
         "thick_mm": thick_mm,
+        "total_neutrons": total_neutrons,
         "sacs_b": sacs_res["SACS"],
         "f_sacs_b": sacs_res["f-SACS"],
         "ssf_sacs_b": sacs_res["ssf-SACS"],
@@ -328,9 +331,9 @@ def main():
         f"# Flux Variant Option   : {args.flux_variant}"
     ]
 
-    # Column Headers: area as 1st column, BIF (Beam Interception Factor) as 14th/last column
-    header_fmt1 = f"#{'1':<8} {'2':<10} {'3':<7} {'4':<8} {'5':<10} {'6':<9} {'7':<10} {'8':<12} {'9':<12} {'10':<12} {'11':<12} {'12':<16} {'13':<15} {'14':<8}"
-    header_fmt2 = f"#{'area':<7} {'sample':<10} {'target':<7} {'product':<8} {'fthick[mm]':<10} {'mass[g]':<9} {'thick[mm]':<10} {'SACS[b]':<12} {'f-SACS[b]':<12} {'ssf-SACS[b]':<12} {'ms-SACS[b]':<12} {'n_total[n/cm2]':<16} {'N_produced':<15} {'BIF':<8}"
+    # Column Headers: area as 1st column, N_neutrons as 8th column (before SACS), BIF as 15th/last column
+    header_fmt1 = f"#{'1':<8} {'2':<10} {'3':<7} {'4':<8} {'5':<10} {'6':<9} {'7':<10} {'8':<16} {'9':<12} {'10':<12} {'11':<12} {'12':<12} {'13':<16} {'14':<15} {'15':<8}"
+    header_fmt2 = f"#{'area':<7} {'sample':<10} {'target':<7} {'product':<8} {'fthick[mm]':<10} {'mass[g]':<9} {'thick[mm]':<10} {'N_neutrons':<16} {'SACS[b]':<12} {'f-SACS[b]':<12} {'ssf-SACS[b]':<12} {'ms-SACS[b]':<12} {'n_total[n/cm2]':<16} {'N_produced':<15} {'BIF':<8}"
     divider_line = "#" * len(header_fmt2)
 
     table_headers = f"{header_fmt1}\n{header_fmt2}\n{divider_line}"
@@ -342,7 +345,8 @@ def main():
             line_str = (
                 f"{res['area']:<8} {res['sample']:<10} {res['target']:<7} {res['isoprod']:<8} "
                 f"{res['fthick_mm']:<10.2f} {res['mass_g']:<9.4f} {res['thick_mm']:<10.4f} "
-                f"{res['sacs_b']:<12.3e} {res['f_sacs_b']:<12.3e} {res['ssf_sacs_b']:<12.3e} {res['ms_sacs_b']:<12.3e} "
+                f"{res['total_neutrons']:<16.3e} {res['sacs_b']:<12.3e} {res['f_sacs_b']:<12.3e} "
+                f"{res['ssf_sacs_b']:<12.3e} {res['ms_sacs_b']:<12.3e} "
                 f"{res['total_fluence']:<16.3e} {res['total_atoms']:<15.3e} {res['bif']:<8.2f}"
             )
             output_lines.append(line_str)
