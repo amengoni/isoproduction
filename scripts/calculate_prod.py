@@ -348,7 +348,7 @@ def main():
                 f"{res['fthick_mm']:<10.2f} {res['mass_g']:<9.4f} {res['diam_mm']:<10.2f} {res['thick_mm']:<10.4f} "
                 f"{res['total_neutrons']:<16.3e} {res['sacs_b']:<12.3e} {res['f_sacs_b']:<12.3e} "
                 f"{res['ssf_sacs_b']:<12.3e} {res['ms_sacs_b']:<12.3e} "
-                f"{res['total_fluence']:<16.3e} {res['total_atoms']:<15.3e} {res['bif']:<8.2f}"
+                f"{res['total_fluence']:<16.3e} {res['total_atoms']:<15.3e} {res['bif']:<8.3f}"
             )
             output_lines.append(line_str)
         except Exception as e:
